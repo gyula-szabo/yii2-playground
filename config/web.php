@@ -8,7 +8,7 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'h3tech-crud'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -54,6 +54,9 @@ $config = [
         ],
     ],
     'params' => $params,
+    'modules' => [
+        'h3tech-crud' => \h3tech\crud\Module::class,
+    ],
 ];
 
 if (YII_ENV_DEV) {
@@ -70,6 +73,11 @@ if (YII_ENV_DEV) {
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
+        'generators' => [
+            'h3tech' => [
+                'class' => \h3tech\crud\generators\crud\Generator::class,
+            ]
+        ]
     ];
 }
 
