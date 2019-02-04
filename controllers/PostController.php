@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use h3tech\crud\controllers\AbstractCRUDController;
 use h3tech\crud\controllers\actions\SingleMediaAction;
+use h3tech\crud\helpers\CrudWidget;
 use yii\db\ActiveRecord;
 
 class PostController extends AbstractCRUDController
@@ -21,6 +22,13 @@ class PostController extends AbstractCRUDController
                 ],
                 'targetSize' => ['width' => 360, 'height' => 224],
             ]],
+        ];
+    }
+
+    public static function viewAttributes(ActiveRecord $model)
+    {
+        return [
+            'title', 'text', CrudWidget::mediaDisplayAttribute('lead_image_id'),
         ];
     }
 
